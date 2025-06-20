@@ -1,6 +1,6 @@
 package com.korit.authstudy.config;
 
-import com.korit.authstudy.filter.StudyFilter;
+//import com.korit.authstudy.filter.StudyFilter;
 import com.korit.authstudy.security.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final StudyFilter studyFilter;
+//    private final StudyFilter studyFilter;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
@@ -55,7 +55,7 @@ public class SecurityConfig {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers("/api/users", "api/users/login", "/api/users/login/status").permitAll();
+            auth.requestMatchers("/api/users", "api/users/login", "/api/users/login/status","api/users/principal").permitAll();
             auth.anyRequest().authenticated();
         }); //특정 요청 URL에 대한 권한 설정
 

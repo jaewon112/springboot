@@ -39,6 +39,5 @@ public class UsersService {
         System.out.println("로그인 성공 토큰 생성");
         String token = jwtUtil.generateAccessToken(user.getId().toString());
         return JwtDto.builder().accessToken(token).build();
-
     }
 }
