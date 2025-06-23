@@ -51,9 +51,11 @@ public class JwtAuthenticationFilter implements Filter {
                     .userId(user.getId())
                     .username(user.getUsername())
                     .password(user.getPassword())
-                    .build();
+                    .fullName(user.getFullName())
+                    .email(user.getEmail())
+                    .build();                                                                           // getAuthorities() 는 사용자의 권한 목록을 담은 컬렉션(Collection)을 반환
             Authentication authentication = new UsernamePasswordAuthenticationToken(principalUser, "", principalUser.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            SecurityContextHolder.getContext().setAuthentication(authentication);                       // 토큰 정보를
             System.out.println("인증 성공");
             System.out.println(authentication.getName());
         }, () -> {

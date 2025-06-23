@@ -45,7 +45,7 @@ public class SecurityConfig {
 
     @Bean //Bean 사용이유 / builder패턴
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors(Customizer.withDefaults()); // 위에서 만든 cors 설정 (bean) security에 적용
+        http.cors(Customizer.withDefaults());               // 위에서 만든 cors 설정 (bean) security에 적용
         http.csrf(csrf -> csrf.disable());                  // 서버사이드 렌더링 방식이 아니니 REST API 방식에서는 비활성화
         http.formLogin(formLogin -> formLogin.disable());   // 서버사이드 렌더링 로그인방식 비활성화
         http.httpBasic(httpBasic -> httpBasic.disable());   // HTTP 프로토콜 기본 로그인 방식 비활성화
@@ -56,7 +56,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers("/api/users", "api/users/login", "/api/users/login/status","api/users/principal").permitAll();
-            auth.anyRequest().authenticated();
+            auth.anyRequest().authenticated(); //authenticated 인증하라는 메소드
         }); //특정 요청 URL에 대한 권한 설정
 
         // HttpSecurity 객체에 설정한 모든 정보를 기반으로 build하여 SecurityFilterChain 객체 생성 후 Bean 등록
